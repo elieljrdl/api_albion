@@ -1,4 +1,4 @@
-from busca_item import coleta_nome_item
+from busca_item import coleta_nome_item, preco_gold_hoje
 from db import engine, SessionLocal
 from models import Base, Item
  

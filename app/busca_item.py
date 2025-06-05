@@ -33,10 +33,12 @@ def coleta_nome_item():
 
 def preco_gold_hoje():
     hoje = date.today()
+    hoje_fomarted = hoje.strftime('%m-%d-%Y')
     
-    url = f'https://west.albion-online-data.com/api/v2/stats/Gold?date={hoje}'
+    url = f'https://old.west.albion-online-data.com/api/v2/stats/Gold?date={hoje_fomarted}'
     resposta = requests.get(url)
     
+    print(resposta.json())
     
     horarios = [datetime.fromisoformat(i['timestamp']) for i in resposta.json()]
     precos = [i['price'] for i in resposta.json()]
@@ -48,13 +50,12 @@ def preco_gold_hoje():
     plt.figure(figsize=(12,6))
     plt.plot(horarios, precos, marker='o', linestyle='-')
     plt.title(f'Preço em {hoje}')
-    plt.xlabel('Horário')
+    plt.xlabel('Data')
     plt.ylabel('Preço')
     plt.grid(True)
     plt.xticks(rotation=45)
     plt.tight_layout()
     plt.show()
-        
+    
 
-
-
+preco_gold_hoje()
